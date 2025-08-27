@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Wishes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
+    .login-box, .birthday-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: #f0f0f0;
+    }
+    button {
+      padding: 10px 20px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #e73370; }
+    .birthday-box {
+      display: none;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      color: #fff;
+      font-size: 24px;
+      padding: 40px;
+      animation: fadeIn 2s;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .confetti div {
+      width: 10px;
+      height: 10px;
+      background: red;
+      position: absolute;
+      top: -10px;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Box -->
+  <div class="login-box" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Username"><br>
+    <input type="password" id="password" placeholder="Enter Password"><br>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Birthday Box -->
+  <div class="birthday-box" id="birthdayBox">
+    <h1>🎉 Happy Birthday Dear Vishnu sir🎉</h1>
+    <p>Wishing you a wonderful day filled with happiness, health, and success!</p>
+    <div class="confetti" id="confetti"></div>
+  </div>
+
+  <script>
+    function login() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+
+      // Simple login check
+      if(user === "Vishnu" && pass === "vishnuakkimi") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("birthdayBox").style.display = "block";
+        startConfetti();
+      } else {
+        alert("Invalid Username or Password");
+      }
+    }
+
+    function startConfetti() {
+      const confetti = document.getElementById("confetti");
+      for(let i=0; i<50; i++) {
+        let div = document.createElement("div");
+        div.style.left = Math.random() * 100 + "vw";
+        div.style.backgroundColor = randomColor();
+        div.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        confetti.appendChild(div);
+      }
+    }
+
+    function randomColor() {
+      const colors = ["#ff4081", "#ffeb3b", "#4caf50", "#2196f3", "#ff5722"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
